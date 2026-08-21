@@ -1,0 +1,66 @@
+# JavaScript / Angular dependencies and generated output
+node_modules/
+dist/
+out-tsc/
+.angular/
+.cache/
+.eslintcache
+.sass-cache/
+.nyc_output/
+coverage/
+
+# .NET generated output
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+[Tt]est[Rr]esults/
+[Pp]ublish/
+*.nupkg
+*.snupkg
+
+# IDE and user-specific files
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+*.code-workspace
+
+# Local environment and configuration files
+.env
+.env.*
+!.env.example
+!.env.*.example
+appsettings.Local.json
+appsettings.*.Local.json
+
+# Secrets and private keys
+secrets.json
+*.pfx
+*.p12
+*.key
+*.pem
+
+# Logs and diagnostic output
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.dmp
+
+# Operating-system artifacts
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
