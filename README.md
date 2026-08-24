@@ -1,35 +1,112 @@
 # Book Quote Manager
 
-Book Quote Manager is a planned full-stack application for organizing books and their associated quotes. It is being developed as a technical internship assessment.
+Book Quote Manager is a full-stack technical internship assessment built with Angular and ASP.NET Core. The current implementation contains the first end-to-end slice: viewing books supplied by the backend in the Angular application.
 
-## Required Technology Stack
+## Technology Stack
 
 - Angular 20
 - ASP.NET Core on .NET 9
 - C#
 - REST API
-- JWT authentication
+- JWT authentication (planned)
 - Bootstrap
 - Font Awesome
 
-## Planned Functional Scope
+## Current Functionality
+
+Slice 1 — Book Library Viewer provides:
+
+- `GET /api/books` from the ASP.NET Core API;
+- temporary backend-owned in-memory book data;
+- an Angular `/books` page;
+- responsive book rendering;
+- loading and request-failure states;
+- backend API integration tests;
+- frontend component behavior tests.
+
+Persistence, authentication, write operations and quote functionality are planned for later slices.
+
+## Planned Scope
 
 - User registration and login
 - JWT-based authentication
-- Create, read, update and delete books
-- Create, read, update and delete quotes
-- Navigation between books and quotes
-- Responsive navigation and user interface for desktop, tablet and mobile
-- Deployment of the completed application
+- Book create, read, update and delete operations
+- Quote create, read, update and delete operations
+- Responsive navigation between books and quotes
+- Dark mode
+- Deployment
 
-## Current Status
+## Repository Structure
 
-The repository is in its initial setup and planning stage. Application projects, architecture, persistence, testing and deployment details have not yet been established.
+```text
+backend/
+├── BookQuoteManager.sln
+├── src/
+│   └── BookQuoteManager.Api/
+└── tests/
+    └── BookQuoteManager.Api.Tests/
+
+frontend/
+├── src/
+└── package.json
+
+docs/
+├── decisions/
+└── slices/
+
+global.json
+README.md
+```
 
 ## Getting Started
 
-Not yet established. Setup instructions will be added after the frontend and backend projects are created.
+### Prerequisites
 
-## Testing
+- .NET 9 SDK
+- Node.js and npm
+- A trusted ASP.NET Core HTTPS development certificate
 
-Not yet established. Testing instructions will be documented when the project testing strategy and tooling have been selected.
+### Backend
+
+From the repository root:
+
+```bash
+cd backend
+dotnet run --project src/BookQuoteManager.Api --launch-profile https
+```
+
+The API runs at `https://localhost:7175`. The books endpoint is available at `https://localhost:7175/api/books`.
+
+### Frontend
+
+In a separate terminal:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+Open `http://localhost:4200/books`. Both applications must be running for the page to load books.
+
+## Testing and Builds
+
+Backend:
+
+```bash
+cd backend
+dotnet build
+dotnet test
+```
+
+Frontend:
+
+```bash
+cd frontend
+npm run build
+npm test -- --watch=false --browsers=ChromeHeadless
+```
+
+## Architecture
+
+Accepted architecture decisions are documented in [`docs/decisions`](docs/decisions). Implementation slices are documented in [`docs/slices`](docs/slices).

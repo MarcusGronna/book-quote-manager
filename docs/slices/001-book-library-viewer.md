@@ -141,4 +141,17 @@ These are temporary implementation boundaries for this slice, not removals from 
 
 ## Decisions Deferred
 
-This slice does not select a database or ORM, authentication implementation, JWT storage mechanism, ASP.NET Core Controllers or Minimal APIs, Angular state-management strategy, deployment provider or final testing architecture.
+### Accepted but Not Implemented in Slice 1
+
+- [ADR 002](../decisions/002-use-feature-oriented-single-project-backend.md) establishes Controllers for the HTTP boundary and a feature-oriented single-project ASP.NET Core backend.
+- [ADR 003](../decisions/003-use-sql-server-and-ef-core-for-persistence.md) establishes SQL Server and EF Core for later persistence work, with Azure SQL Database intended for production.
+- [ADR 004](../decisions/004-use-identitycore-and-jwt-bearer-authentication.md) establishes ASP.NET Core IdentityCore and JWT Bearer authentication for later authentication work.
+- [ADR 005](../decisions/005-store-jwt-access-token-in-local-storage.md) establishes browser `localStorage` for later JWT access-token storage.
+
+An architecture or technology decision can be accepted for the overall application while its implementation remains outside the current slice. Slice 1 remains limited to the Angular `/books` view, `GET /api/books` and temporary backend-owned in-memory or seeded book data. Persistence, Identity and JWT handling remain excluded.
+
+### Still Deferred
+
+- Detailed final testing architecture beyond the verification required by Slice 1.
+- Production deployment details that have not yet been selected.
+- Exact feature subfolders, persistence schema details and JWT configuration details that the accepted ADRs deliberately leave for the relevant implementation slices.
