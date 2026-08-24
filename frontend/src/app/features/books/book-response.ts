@@ -1,6 +1,6 @@
 export interface BookResponse {
   readonly id: number;
-  readonly titel: string;
+  readonly title: string;
   readonly name: string;
   readonly publishedDate: string;
 }
