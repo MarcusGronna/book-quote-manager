@@ -26,6 +26,7 @@ public sealed class BooksController : ControllerBase
     ];
 
     [HttpGet]
+    [ProducesResponseType<IReadOnlyList<BookResponse>>(StatusCodes.Status200OK, "application/json")]
     public ActionResult<IReadOnlyList<BookResponse>> GetBooks()
     {
         return Ok(Books);
