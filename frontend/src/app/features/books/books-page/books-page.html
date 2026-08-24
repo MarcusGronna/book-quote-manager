@@ -1,1 +1,48 @@
-<p>books-page works!</p>
+<main class="container py-4" aria-labelledby="books-heading">
+  <header class="mb-4">
+    <h1 id="books-heading" class="display-6">Book library</h1>
+    <p class="text-body-secondary mb-0">Books currently available in the application.</p>
+  </header>
+
+  @let currentState = state();
+
+  @switch (currentState.status) {
+    @case ('loading') {
+      <div class="d-flex align-items-center gap-2" role="status">
+        <div class="spinner-border spinner-border-sm" aria- hidden="true"></div>
+        <span>Loading books...</span>
+      </div>
+    }
+
+    @case ('error') {
+      <div class="alert alert-danger" role="alert">
+        {{ currentState.message }}
+      </div>
+    }
+
+    @case ('success') {
+      @if (currentState.books.length === 0) {
+        <div class="alert alert-info" role="status">No books are currently available.</div>
+      } @else {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+          @for (book of currentState.books; track book.id) {
+            <div class="col">
+              <article class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <h2 class="card-title h5">{{ book.title }}</h2>
+                  <p class="card-text mb-2">By {{ book.author }}</p>
+                  <p class="card-text text-body-secondary mb-0">
+                    Published
+                    <time [attr.datetime]="book.publishedDate">
+                      {{ book.publishedDate | date: 'longDate' : 'UTC' }}
+                    </time>
+                  </p>
+                </div>
+              </article>
+            </div>
+          }
+        </div>
+      }
+    }
+  }
+</main>

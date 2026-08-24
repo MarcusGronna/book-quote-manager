@@ -2,6 +2,7 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { BookResponse } from '../book-response';
 import { BooksApi } from '../books-api';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DatePipe } from '@angular/common';
 
 type BooksViewState =
   | { readonly status: 'loading' }
@@ -16,7 +17,7 @@ type BooksViewState =
 
 @Component({
   selector: 'app-books-page',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './books-page.html',
   styleUrl: './books-page.css',
 })
