@@ -2,7 +2,7 @@
 
 ## Status
 
-Planned
+Complete
 
 ## Goal
 
@@ -141,17 +141,18 @@ These are temporary implementation boundaries for this slice, not removals from 
 
 ## Decisions Deferred
 
-### Accepted but Not Implemented in Slice 1
+### Implemented in Slice 1
 
-- [ADR 002](../decisions/002-use-feature-oriented-single-project-backend.md) establishes Controllers for the HTTP boundary and a feature-oriented single-project ASP.NET Core backend.
-- [ADR 003](../decisions/003-use-sql-server-and-ef-core-for-persistence.md) establishes SQL Server and EF Core for later persistence work, with Azure SQL Database intended for production.
-- [ADR 004](../decisions/004-use-identitycore-and-jwt-bearer-authentication.md) establishes ASP.NET Core IdentityCore and JWT Bearer authentication for later authentication work.
-- [ADR 005](../decisions/005-store-jwt-access-token-in-local-storage.md) establishes browser `localStorage` for later JWT access-token storage.
+- [ADR 002](../decisions/002-use-feature-oriented-single-project-backend.md) is reflected by the single ASP.NET Core API project, separate backend test project, Controllers and feature-oriented Books organization.
 
-An architecture or technology decision can be accepted for the overall application while its implementation remains outside the current slice. Slice 1 remains limited to the Angular `/books` view, `GET /api/books` and temporary backend-owned in-memory or seeded book data. Persistence, Identity and JWT handling remain excluded.
+### Accepted for Later Slices
 
-### Still Deferred
+- [ADR 003](../decisions/003-use-sql-server-and-ef-core-for-persistence.md) establishes SQL Server and EF Core for application persistence, while [ADR 006](../decisions/006-use-sqlite-in-memory-for-persistence-tests.md) establishes SQLite in-memory for normal automated persistence tests. Slice 1 implemented neither because it intentionally used temporary backend-owned book data.
+- [ADR 004](../decisions/004-use-identitycore-and-jwt-bearer-authentication.md) establishes IdentityCore and JWT Bearer authentication, and [ADR 005](../decisions/005-store-jwt-access-token-in-local-storage.md) establishes browser `localStorage` for JWT access-token storage. Authentication and token handling remained outside Slice 1.
 
-- Detailed final testing architecture beyond the verification required by Slice 1.
-- Production deployment details that have not yet been selected.
-- Exact feature subfolders, persistence schema details and JWT configuration details that the accepted ADRs deliberately leave for the relevant implementation slices.
+These decisions were accepted for the overall application even though their functionality remained outside this slice.
+
+### Still Deferred After Slice 1
+
+- Production deployment details.
+- Persistence schemas, JWT configuration and testing details not settled by the accepted ADRs or Slice 1 verification.

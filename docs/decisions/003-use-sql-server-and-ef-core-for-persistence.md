@@ -22,7 +22,7 @@ Use EF Core migrations and commit migrations to source control. Do not introduce
 
 This stack defines application persistence for production and normal local development. Automated persistence and integration tests that require a relational database use SQLite in-memory, as established by [ADR 006](006-use-sqlite-in-memory-for-persistence-tests.md). Tests swap the EF Core provider while exercising the same `ApplicationDbContext`; SQLite does not replace SQL Server as the application database.
 
-The initial relational model will include user-owned Books and Quotes. Detailed schemas, relationships and constraints belong to their implementation slices rather than this decision.
+Persistence may be introduced incrementally, beginning with users before Books and Quotes are persisted. The eventual application model will include user-owned Books and Quotes; detailed schemas, relationships and constraints belong to their implementation slices rather than this decision.
 
 ## Reasoning
 
