@@ -19,9 +19,11 @@ The initial flow is:
 ```text
 Register
    ↓
-account created
+IdentityCore validates the registration data and persists the new user
+   ↓
+registration completes without authenticating the user or issuing a JWT
 
-Login
+Separate login request
    ↓
 credentials verified by IdentityCore
    ↓
@@ -33,6 +35,8 @@ ASP.NET Core validates token
    ↓
 protected endpoint executes
 ```
+
+Registration and login are separate operations. Successful registration creates the persisted Identity user but does not automatically log the user in. JWT issuance occurs only after a later successful login.
 
 Registration and login endpoints are anonymous. Book and Quote CRUD endpoints require authentication. The backend determines resource ownership from the validated authenticated principal; it must never trust an arbitrary user ID supplied by the frontend to select an owner.
 
