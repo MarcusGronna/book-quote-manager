@@ -20,6 +20,8 @@ Production:        Azure SQL Database
 
 Use EF Core migrations and commit migrations to source control. Do not introduce a custom generic repository abstraction over EF Core unless implementation demonstrates a concrete need.
 
+This stack defines application persistence for production and normal local development. Automated persistence and integration tests that require a relational database use SQLite in-memory, as established by [ADR 006](006-use-sqlite-in-memory-for-persistence-tests.md). Tests swap the EF Core provider while exercising the same `ApplicationDbContext`; SQLite does not replace SQL Server as the application database.
+
 The initial relational model will include user-owned Books and Quotes. Detailed schemas, relationships and constraints belong to their implementation slices rather than this decision.
 
 ## Reasoning
@@ -32,7 +34,7 @@ EF Core is the natural ORM for this .NET application and provides change trackin
 
 - **PostgreSQL locally with Azure Database for PostgreSQL:** Technically suitable and relational, but less aligned than Azure SQL with the current Azure-first, low-cost deployment goal.
 - **PostgreSQL with an external provider such as Neon:** Can provide an attractive hosted option, but introduces an additional provider relationship outside the intended Azure deployment path.
-- **SQLite:** Simple and inexpensive locally, but differs more materially from the intended production database and is less representative of the deployed environment.
+- **SQLite as the application database for local development:** Simple and inexpensive, but differs more materially from the intended production database and is less representative of the deployed environment. SQLite remains appropriate for isolated automated persistence tests under ADR 006.
 - **Direct ADO.NET or manual SQL:** Provides maximum query control, but adds data-access and mapping work that EF Core already handles effectively for this assessment.
 
 ## Consequences
